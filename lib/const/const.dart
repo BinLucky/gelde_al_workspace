@@ -7,3 +7,5 @@ final Widget mainLogo = SvgPicture.asset(
   logoPath,
   height: 10,
 );
+
+double logoHeight = 300;
