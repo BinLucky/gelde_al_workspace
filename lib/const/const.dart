@@ -9,3 +9,11 @@ final Widget mainLogo = SvgPicture.asset(
 );
 
 double logoHeight = 300;
+
+/*class ContainerSize {
+  ContainerSize(this._mediaQuery);
+  final MediaQuery _mediaQuery;
+  
+}*/
+
+const double cIconSize = 35;

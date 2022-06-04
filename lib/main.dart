@@ -27,10 +27,13 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      backgroundColor: const Color(0xFF2F2F2F),
-      body: loginBody(),
-      resizeToAvoidBottomInset: false,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        backgroundColor: const Color(0xFF2F2F2F),
+        body: loginBody(),
+        resizeToAvoidBottomInset: false,
+      ),
     );
   }
 }
@@ -49,17 +52,18 @@ class loginBodyState extends State<loginBody>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation logoAnimation;
+  bool logoSize = true;
 
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
     _controller.addListener(() {
       setState(() {});
     });
-    logoAnimation = Tween<double>(begin: 300, end: 100)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.bounceIn));
+    logoAnimation = Tween<double>(begin: 300, end: 75).animate(
+        CurvedAnimation(parent: _controller, curve: Curves.easeInOutQuint));
     super.initState();
   }
 
@@ -72,24 +76,32 @@ class loginBodyState extends State<loginBody>
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    //####### DEVICE SCREEN SIZES #######//
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWidth = MediaQuery.of(context).size.width;
+
+    debugPrint(deviceWidth.toString());
+
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
+        padding: const EdgeInsets.only(left: 4),
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 55),
-              child: SvgPicture.asset(
-                logoPath,
-                height: logoAnimation.value,
+            Expanded(
+              flex: logoSize ? 1 : 0,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                child: SvgPicture.asset(
+                  logoPath,
+                  height: logoAnimation.value,
+                ),
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2,
+              width: deviceWidth,
+              height: deviceHeight / 2,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
@@ -101,48 +113,63 @@ class loginBodyState extends State<loginBody>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    TextFormField(
-                        decoration: InputDecoration(
-                            suffixIcon: const Icon(
-                              Icons.person,
-                              color: Color(0xFFE0E0E0),
-                              size: 35,
-                            ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(22, 20, 22, 20),
-                            hintText: "E-posta adresinizi girin",
-                            hintStyle: GoogleFonts.lato(
-                              color: Color(0xFFE0E0E0),
-                              fontSize: 18,
-                            ),
-                            fillColor: Color(0xFFFFFFFF),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15)))),
-                    TextFormField(
-                        //onEditingComplete: () => _controller.reverse(),
-                        onTap: () {
-                          _controller.forward();
-                        },
-                        decoration: InputDecoration(
-                            suffixIcon: const Icon(
-                              Icons.visibility_off,
-                              color: Color(0xFFE0E0E0),
-                              size: 30,
-                            ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(22, 20, 22, 20),
-                            hintText: "E-posta adresinizi girin",
-                            hintStyle: GoogleFonts.lato(
-                              color: Color(0xFFE0E0E0),
-                              fontSize: 18,
-                            ),
-                            fillColor: Color(0xFFFFFFFF),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15)))),
+                    Focus(
+                        onFocusChange: ((value) {
+                          if (value) {
+                            logoSize
+                                ? _controller.forward()
+                                : _controller.reverse();
+                            logoSize = false;
+                          } else {
+                            _controller.reverse();
+                            logoSize = true;
+                          }
+                        }),
+                        child: Column(children: [
+                          TextFormField(
+                              enableInteractiveSelection: true,
+                              decoration: InputDecoration(
+                                  suffixIcon: const Icon(
+                                    Icons.person,
+                                    color: Color(0xFFE0E0E0),
+                                    size: cIconSize,
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(22, 20, 22, 20),
+                                  hintText: "E-posta adresinizi girin",
+                                  hintStyle: GoogleFonts.lato(
+                                    color: Color(0xFFE0E0E0),
+                                    fontSize: 18,
+                                  ),
+                                  fillColor: Color(0xFFFFFFFF),
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius:
+                                          BorderRadius.circular(15)))),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                              //onEditingComplete: () => _controller.reverse(),
+
+                              decoration: InputDecoration(
+                                  suffixIcon: const Icon(
+                                    Icons.visibility_off,
+                                    color: Color(0xFFE0E0E0),
+                                    size: 30,
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(22, 20, 22, 20),
+                                  hintText: "E-posta adresinizi girin",
+                                  hintStyle: GoogleFonts.lato(
+                                    color: Color(0xFFE0E0E0),
+                                    fontSize: 18,
+                                  ),
+                                  fillColor: Color(0xFFFFFFFF),
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(15))))
+                        ])),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: const [
@@ -155,16 +182,16 @@ class loginBodyState extends State<loginBody>
                     Stack(children: [
                       Container(
                         height: 56,
-                        width: 338,
+                        width: deviceWidth * 0.86,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             color: Color(0xFF2F2F2F)),
                       ),
                       Positioned(
                           top: 2,
-                          left: 185,
+                          left: deviceWidth * 0.47,
                           child: Container(
-                            width: 148,
+                            width: deviceWidth * 0.14,
                             height: 51,
                             decoration: BoxDecoration(
                                 color: const Color(0xFFEBFF00),
@@ -172,21 +199,18 @@ class loginBodyState extends State<loginBody>
                           )),
                       SizedBox(
                         height: 56,
-                        width: 338,
+                        width: deviceWidth * 0.8,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
+                          children: const [
                             Padding(
-                              padding: const EdgeInsets.only(left: 33),
-                              child: GestureDetector(
-                                  child: const Text("KAYIT OL",
-                                      style: TextStyle(
-                                          color: Color(0xFFEBFF00),
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20)),
-                                  onTap: () {}),
-                            ),
-                            const Padding(
+                                padding: EdgeInsets.only(left: 33),
+                                child: Text("KAYIT OL",
+                                    style: TextStyle(
+                                        color: Color(0xFFEBFF00),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20))),
+                            Padding(
                               padding: EdgeInsets.only(right: 50),
                               child: Text("GİRİŞ",
                                   style: TextStyle(
