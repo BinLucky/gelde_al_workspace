@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: const Color(0xFF2F2F2F),
+        backgroundColor: kmainScaffoldColor,
         body: loginBody(),
         resizeToAvoidBottomInset: false,
       ),
@@ -106,7 +106,7 @@ class loginBodyState extends State<loginBody>
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50)),
-                color: Color(0xFFE5E5E5),
+                color: kthemeWhite,
               ),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(30, 80, 30, 80),
@@ -131,17 +131,17 @@ class loginBodyState extends State<loginBody>
                               decoration: InputDecoration(
                                   suffixIcon: const Icon(
                                     Icons.person,
-                                    color: Color(0xFFE0E0E0),
+                                    color: kinputWhite,
                                     size: cIconSize,
                                   ),
                                   contentPadding:
                                       const EdgeInsets.fromLTRB(22, 20, 22, 20),
                                   hintText: "E-posta adresinizi girin",
                                   hintStyle: GoogleFonts.lato(
-                                    color: Color(0xFFE0E0E0),
+                                    color: kinputWhite,
                                     fontSize: 18,
                                   ),
-                                  fillColor: Color(0xFFFFFFFF),
+                                  fillColor: kinputWhite,
                                   filled: true,
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
@@ -154,17 +154,17 @@ class loginBodyState extends State<loginBody>
                               decoration: InputDecoration(
                                   suffixIcon: const Icon(
                                     Icons.visibility_off,
-                                    color: Color(0xFFE0E0E0),
+                                    color: kinputWhite,
                                     size: 30,
                                   ),
                                   contentPadding:
                                       const EdgeInsets.fromLTRB(22, 20, 22, 20),
                                   hintText: "E-posta adresinizi girin",
                                   hintStyle: GoogleFonts.lato(
-                                    color: Color(0xFFE0E0E0),
+                                    color: kinputWhite,
                                     fontSize: 18,
                                   ),
-                                  fillColor: Color(0xFFFFFFFF),
+                                  fillColor: kinputWhite,
                                   filled: true,
                                   border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
@@ -185,7 +185,7 @@ class loginBodyState extends State<loginBody>
                         width: deviceWidth * 0.86,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: Color(0xFF2F2F2F)),
+                            color: kthemeBlack),
                       ),
                       Positioned(
                           top: 2,
@@ -194,7 +194,7 @@ class loginBodyState extends State<loginBody>
                             width: deviceWidth * 0.14,
                             height: 51,
                             decoration: BoxDecoration(
-                                color: const Color(0xFFEBFF00),
+                                color: kthemeYellow,
                                 borderRadius: BorderRadius.circular(15)),
                           )),
                       SizedBox(
@@ -207,14 +207,14 @@ class loginBodyState extends State<loginBody>
                                 padding: EdgeInsets.only(left: 33),
                                 child: Text("KAYIT OL",
                                     style: TextStyle(
-                                        color: Color(0xFFEBFF00),
+                                        color: kthemeYellow,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20))),
                             Padding(
                               padding: EdgeInsets.only(right: 50),
                               child: Text("GİRİŞ",
                                   style: TextStyle(
-                                      color: Color(0xFF2F2F2F),
+                                      color: kthemeBlack,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20)),
                             ),

@@ -8,6 +8,14 @@ final Widget mainLogo = SvgPicture.asset(
   height: 10,
 );
 
+//##### COLORS #####//
+
+const Color kmainScaffoldColor = Color(0xFF2F2F2F);
+const Color kthemeWhite = Color(0xFFE5E5E5);
+const Color kinputWhite = Color(0xFFE0E0E0);
+const Color kthemeBlack = Color(0xFF2F2F2F);
+const Color kthemeYellow = Color(0xFFEBFF00);
+
 double logoHeight = 300;
 
 /*class ContainerSize {
