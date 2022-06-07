@@ -77,10 +77,15 @@ class loginBodyState extends State<loginBody>
   @override
   Widget build(BuildContext context) {
     //####### DEVICE SCREEN SIZES #######//
-    double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height.ceilToDouble();
+    double deviceWidth = MediaQuery.of(context).size.width.ceilToDouble();
+    double defaultPaddingSize = deviceWidth * 0.35;
 
-    debugPrint(deviceWidth.toString());
+    debugPrint("##########" +
+        deviceWidth.toString() +
+        "##########" +
+        "BAR WIDTH" +
+        (deviceWidth * 0.86).toString());
 
     return SafeArea(
       child: Padding(
@@ -187,32 +192,44 @@ class loginBodyState extends State<loginBody>
                             borderRadius: BorderRadius.circular(15),
                             color: kthemeBlack),
                       ),
-                      Positioned(
-                          top: 2,
-                          left: deviceWidth * 0.47,
-                          child: Container(
-                            width: deviceWidth * 0.14,
-                            height: 51,
-                            decoration: BoxDecoration(
-                                color: kthemeYellow,
-                                borderRadius: BorderRadius.circular(15)),
-                          )),
-                      SizedBox(
+                      Container(
+                          color: Colors.transparent,
+                          height: 56,
+                          width: deviceWidth * 0.86,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.fromLTRB(3, 2, 3, 1),
+                                  child: Container(
+                                    width: (deviceWidth - 64) * 0.34,
+                                    height: 51,
+                                    decoration: BoxDecoration(
+                                        color: kthemeYellow,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                  ),
+                                )
+                              ])),
+                      Container(
+                        color: Colors.transparent,
                         height: 56,
-                        width: deviceWidth * 0.8,
+                        width: deviceWidth * 0.86,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Padding(
-                                padding: EdgeInsets.only(left: 33),
-                                child: Text("KAYIT OL",
+                                padding:
+                                    EdgeInsets.only(left: deviceWidth * 0.09),
+                                child: const Text("KAYIT OL",
                                     style: TextStyle(
                                         color: kthemeYellow,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20))),
                             Padding(
-                              padding: EdgeInsets.only(right: 50),
-                              child: Text("GİRİŞ",
+                              padding:
+                                  EdgeInsets.only(right: deviceWidth * 0.09),
+                              child: const Text("GİRİŞ",
                                   style: TextStyle(
                                       color: kthemeBlack,
                                       fontWeight: FontWeight.bold,
@@ -221,7 +238,7 @@ class loginBodyState extends State<loginBody>
                           ],
                         ),
                       )
-                    ])
+                    ]),
                   ],
                 ),
               ),
@@ -230,6 +247,5 @@ class loginBodyState extends State<loginBody>
         )),
       ),
     );
-    ;
   }
 }
