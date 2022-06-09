@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'dart:ui';
 
 final String logoPath = "assets/logo.svg";
 
@@ -25,3 +26,30 @@ double logoHeight = 300;
 }*/
 
 const double cIconSize = 35;
+
+double dependedSizeWidth(BuildContext context) {
+  if (MediaQuery.of(context).orientation == Orientation.landscape) {
+    return MediaQuery.of(context).size.width;
+  } else
+    return MediaQuery.of(context).size.height;
+}
+
+class DependedSizes {
+  final double screeenWidth;
+  final double screenHeight;
+  double devPixelRatio;
+  Size devLogicalScreenSize;
+
+  DependedSizes(this.screeenWidth, this.screenHeight, this.devPixelRatio,
+      this.devLogicalScreenSize);
+
+  double getdeviceWidth() {
+    devPixelRatio = window.devicePixelRatio;
+    devLogicalScreenSize = window.physicalSize / devPixelRatio;
+    if (devLogicalScreenSize.width > devLogicalScreenSize.height) {
+      return devLogicalScreenSize.width;
+    } else {
+      return devLogicalScreenSize.height;
+    }
+  }
+}
