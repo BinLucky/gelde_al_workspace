@@ -35,21 +35,17 @@ double dependedSizeWidth(BuildContext context) {
 }
 
 class DependedSizes {
-  final double screeenWidth;
-  final double screenHeight;
-  double devPixelRatio;
-  Size devLogicalScreenSize;
-
-  DependedSizes(this.screeenWidth, this.screenHeight, this.devPixelRatio,
-      this.devLogicalScreenSize);
+  DependedSizes();
 
   double getdeviceWidth() {
-    devPixelRatio = window.devicePixelRatio;
-    devLogicalScreenSize = window.physicalSize / devPixelRatio;
-    if (devLogicalScreenSize.width > devLogicalScreenSize.height) {
-      return devLogicalScreenSize.width;
-    } else {
-      return devLogicalScreenSize.height;
-    }
+    double devPixelRatio = window.devicePixelRatio;
+    Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
+    return devLogicalScreenSize.width;
+  }
+
+  double getdeviceHeigt() {
+    double devPixelRatio = window.devicePixelRatio;
+    Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
+    return devLogicalScreenSize.height;
   }
 }

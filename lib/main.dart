@@ -53,6 +53,7 @@ class loginBodyState extends State<loginBody>
   late AnimationController _controller;
   late Animation logoAnimation;
   bool logoSize = true;
+  DependedSizes sizeController = DependedSizes();
 
   @override
   void initState() {
@@ -62,8 +63,11 @@ class loginBodyState extends State<loginBody>
     _controller.addListener(() {
       setState(() {});
     });
-    logoAnimation = Tween<double>(begin: 300, end: 75).animate(
-        CurvedAnimation(parent: _controller, curve: Curves.easeInOutQuint));
+    logoAnimation = Tween<double>(
+            begin: sizeController.getdeviceWidth() / 2,
+            end: sizeController.getdeviceWidth() / 4)
+        .animate(
+            CurvedAnimation(parent: _controller, curve: Curves.easeInOutQuint));
     super.initState();
   }
 
@@ -77,21 +81,16 @@ class loginBodyState extends State<loginBody>
   @override
   Widget build(BuildContext context) {
     //####### DEVICE SCREEN SIZES #######//
-    Orientation deviceOrientation = MediaQuery.of(context).orientation;
-    late double deviceHeight;
-    late double deviceWidth;
-    if (deviceOrientation == Orientation.landscape) {
-      deviceHeight = MediaQuery.of(context).size.height.ceilToDouble();
-      deviceWidth = MediaQuery.of(context).size.width.ceilToDouble();
-    } else {
-      double deviceWidth = MediaQuery.of(context).size.height.ceilToDouble();
-      double deviceHeight = MediaQuery.of(context).size.width.ceilToDouble();
-    }
-
-    double barWidth = deviceWidth * 0.86;
+    double deviceHeight = sizeController.getdeviceHeigt();
+    double deviceWidth = sizeController.getdeviceWidth();
+    double barWidth = deviceWidth;
     double yellowMarkerWidth = barWidth * 0.4;
-
-    debugPrint(deviceOrientation.name);
+    /* debugPrint("Window Width " + deviceWidth.toString());
+    debugPrint("Window Height " + deviceHeight.toString());
+    debugPrint("Context Width " + MediaQuery.of(context).size.width.toString());
+    debugPrint(
+        "Context Height " + MediaQuery.of(context).size.height.toString());*/
+    //####### DEVICE SCREEN SIZES #######//
 
     return SafeArea(
       child: Center(
@@ -116,133 +115,137 @@ class loginBodyState extends State<loginBody>
                   topLeft: Radius.circular(50), topRight: Radius.circular(50)),
               color: kthemeWhite,
             ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(30, 80, 30, 80),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Focus(
-                      onFocusChange: ((value) {
-                        if (value) {
-                          logoSize
-                              ? _controller.forward()
-                              : _controller.reverse();
-                          logoSize = false;
-                        } else {
-                          _controller.reverse();
-                          logoSize = true;
-                        }
-                      }),
-                      child: Column(children: [
-                        TextFormField(
-                            enableInteractiveSelection: true,
-                            decoration: InputDecoration(
-                                suffixIcon: const Icon(
-                                  Icons.person,
-                                  color: kinputWhite,
-                                  size: cIconSize,
-                                ),
-                                contentPadding:
-                                    const EdgeInsets.fromLTRB(22, 20, 22, 20),
-                                hintText: "E-posta adresinizi girin",
-                                hintStyle: GoogleFonts.lato(
-                                  color: kinputWhite,
-                                  fontSize: 18,
-                                ),
-                                fillColor: kinputWhite,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(15)))),
-                        const SizedBox(height: 10),
-                        TextFormField(
-                            //onEditingComplete: () => _controller.reverse(),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(30, 80, 30, 80),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Focus(
+                        onFocusChange: ((value) {
+                          if (value) {
+                            logoSize
+                                ? _controller.forward()
+                                : _controller.reverse();
+                            logoSize = false;
+                          } else {
+                            _controller.reverse();
+                            logoSize = true;
+                          }
+                        }),
+                        child: Column(children: [
+                          TextFormField(
+                              enableInteractiveSelection: true,
+                              decoration: InputDecoration(
+                                  suffixIcon: const Icon(
+                                    Icons.person,
+                                    color: kinputWhite,
+                                    size: cIconSize,
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(22, 20, 22, 20),
+                                  hintText: "E-posta adresinizi girin",
+                                  hintStyle: GoogleFonts.lato(
+                                    color: kinputWhite,
+                                    fontSize: 18,
+                                  ),
+                                  fillColor: kinputWhite,
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius:
+                                          BorderRadius.circular(15)))),
+                          const SizedBox(height: 10),
+                          TextFormField(
+                              //onEditingComplete: () => _controller.reverse(),
 
-                            decoration: InputDecoration(
-                                suffixIcon: const Icon(
-                                  Icons.visibility_off,
-                                  color: kinputWhite,
-                                  size: 30,
-                                ),
-                                contentPadding:
-                                    const EdgeInsets.fromLTRB(22, 20, 22, 20),
-                                hintText: "E-posta adresinizi girin",
-                                hintStyle: GoogleFonts.lato(
-                                  color: kinputWhite,
-                                  fontSize: 18,
-                                ),
-                                fillColor: kinputWhite,
-                                filled: true,
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(15))))
-                      ])),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
-                      Text(
-                        "Şifremi Unuttum",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                  Stack(children: [
-                    Container(
-                      height: 56,
-                      width: deviceWidth * 0.86,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: kthemeBlack),
+                              decoration: InputDecoration(
+                                  suffixIcon: const Icon(
+                                    Icons.visibility_off,
+                                    color: kinputWhite,
+                                    size: 30,
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(22, 20, 22, 20),
+                                  hintText: "E-posta adresinizi girin",
+                                  hintStyle: GoogleFonts.lato(
+                                    color: kinputWhite,
+                                    fontSize: 18,
+                                  ),
+                                  fillColor: kinputWhite,
+                                  filled: true,
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                      borderRadius: BorderRadius.circular(15))))
+                        ])),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        Text(
+                          "Şifremi Unuttum",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )
+                      ],
                     ),
-                    Container(
+                    Stack(children: [
+                      Container(
+                        height: 56,
+                        width: deviceWidth * 0.86,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: kthemeBlack),
+                      ),
+                      Container(
+                          color: Colors.transparent,
+                          height: 56,
+                          width: deviceWidth * 0.86,
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: barWidth * 0.003),
+                                  child: Container(
+                                    width: yellowMarkerWidth,
+                                    height: 51,
+                                    decoration: BoxDecoration(
+                                        color: kthemeYellow,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                  ),
+                                )
+                              ])),
+                      Container(
                         color: Colors.transparent,
                         height: 56,
                         width: deviceWidth * 0.86,
                         child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: barWidth * 0.003),
-                                child: Container(
-                                  width: yellowMarkerWidth,
-                                  height: 51,
-                                  decoration: BoxDecoration(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              width: yellowMarkerWidth,
+                              child: const Text("KAYIT OL",
+                                  style: TextStyle(
                                       color: kthemeYellow,
-                                      borderRadius: BorderRadius.circular(15)),
-                                ),
-                              )
-                            ])),
-                    Container(
-                      color: Colors.transparent,
-                      height: 56,
-                      width: deviceWidth * 0.86,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            width: yellowMarkerWidth,
-                            child: const Text("KAYIT OL",
-                                style: TextStyle(
-                                    color: kthemeYellow,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20)),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            width: yellowMarkerWidth,
-                            child: const Text("GİRİŞ",
-                                style: TextStyle(
-                                    color: kthemeBlack,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20)),
-                          ),
-                        ],
-                      ),
-                    )
-                  ]),
-                ],
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20)),
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              width: yellowMarkerWidth,
+                              child: const Text("GİRİŞ",
+                                  style: TextStyle(
+                                      color: kthemeBlack,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20)),
+                            ),
+                          ],
+                        ),
+                      )
+                    ]),
+                  ],
+                ),
               ),
             ),
           )
