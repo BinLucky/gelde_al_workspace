@@ -10,12 +10,17 @@ final Widget mainLogo = SvgPicture.asset(
 );
 
 //##### COLORS #####//
-
 const Color kmainScaffoldColor = Color(0xFF2F2F2F);
 const Color kthemeWhite = Color(0xFFE5E5E5);
 const Color kinputWhite = Color(0xFFE0E0E0);
 const Color kthemeBlack = Color(0xFF2F2F2F);
 const Color kthemeYellow = Color(0xFFEBFF00);
+//####### DEVICE SCREEN SIZES #######//
+double deviceHeight = getdeviceHeigt();
+double deviceWidth = getdeviceWidth();
+double barWidth = deviceWidth;
+double yellowMarkerWidth = barWidth * 0.4;
+//####### DEVICE SCREEN SIZES #######//
 
 double logoHeight = 300;
 
@@ -27,25 +32,14 @@ double logoHeight = 300;
 
 const double cIconSize = 35;
 
-double dependedSizeWidth(BuildContext context) {
-  if (MediaQuery.of(context).orientation == Orientation.landscape) {
-    return MediaQuery.of(context).size.width;
-  } else
-    return MediaQuery.of(context).size.height;
+double getdeviceWidth() {
+  double devPixelRatio = window.devicePixelRatio;
+  Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
+  return devLogicalScreenSize.width;
 }
 
-class DependedSizes {
-  DependedSizes();
-
-  double getdeviceWidth() {
-    double devPixelRatio = window.devicePixelRatio;
-    Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
-    return devLogicalScreenSize.width;
-  }
-
-  double getdeviceHeigt() {
-    double devPixelRatio = window.devicePixelRatio;
-    Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
-    return devLogicalScreenSize.height;
-  }
+double getdeviceHeigt() {
+  double devPixelRatio = window.devicePixelRatio;
+  Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
+  return devLogicalScreenSize.height;
 }

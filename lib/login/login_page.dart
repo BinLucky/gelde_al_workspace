@@ -15,15 +15,15 @@ class LoginPage extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: kmainScaffoldColor,
-        body: loginBody(),
+        body: LoginBody(),
         resizeToAvoidBottomInset: false,
       ),
     );
   }
 }
 
-class loginBody extends StatefulWidget {
-  loginBody({Key? key}) : super(key: key);
+class LoginBody extends StatefulWidget {
+  LoginBody({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -32,13 +32,12 @@ class loginBody extends StatefulWidget {
   }
 }
 
-class LoginBodyState extends State<loginBody>
+class LoginBodyState extends State<LoginBody>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation logoAnimation;
   late Animation buttonAnimation;
   bool logoSize = true;
-  DependedSizes sizeController = DependedSizes();
 
 /*##### ANIMATIONS , LOGO SIZE #####*/
   @override
@@ -49,9 +48,7 @@ class LoginBodyState extends State<loginBody>
     _controller.addListener(() {
       setState(() {});
     });
-    logoAnimation = Tween<double>(
-            begin: sizeController.getdeviceWidth() / 2,
-            end: sizeController.getdeviceWidth() / 4)
+    logoAnimation = Tween<double>(begin: deviceWidth / 2, end: deviceWidth / 4)
         .animate(
             CurvedAnimation(parent: _controller, curve: Curves.easeInOutQuint));
 
@@ -68,17 +65,6 @@ class LoginBodyState extends State<loginBody>
 
   @override
   Widget build(BuildContext context) {
-    //####### DEVICE SCREEN SIZES #######//
-    double deviceHeight = sizeController.getdeviceHeigt();
-    double deviceWidth = sizeController.getdeviceWidth();
-    double barWidth = deviceWidth;
-    double yellowMarkerWidth = barWidth * 0.4;
-    void changeMarker() {
-      debugPrint("State has been rebuild");
-      setState(() {});
-    }
-
-    //####### DEVICE SCREEN SIZES #######//
     return SafeArea(
       child: Center(
           child: Column(
@@ -129,7 +115,11 @@ class LoginBodyState extends State<loginBody>
                         deviceWidth: deviceWidth,
                         barWidth: barWidth,
                         yellowMarkerWidth: yellowMarkerWidth,
-                        onButtonPressed: changeMarker),
+                        onButtonPressed: () {
+                          setState(() {
+                            debugPrint("State reloaded");
+                          });
+                        }),
                   ],
                 ),
               ),
@@ -156,10 +146,11 @@ class ButtonGroup extends StatelessWidget {
   final double barWidth;
   final double yellowMarkerWidth;
   final VoidCallback onButtonPressed;
-  bool markerPosition = true;
+  bool markerPosition = false;
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Button Group Rebuilded");
     return AnimatedBuilder(
       animation: controller,
       builder: (context, child) {
@@ -191,11 +182,9 @@ class ButtonGroup extends StatelessWidget {
                   width: yellowMarkerWidth,
                   child: GestureDetector(
                     onTap: () {
-                      markerPosition = !markerPosition;
-                      onButtonPressed;
-                      debugPrint("Button Pressed");
-
+                      markerPosition = markerPosition ? false : true;
                       debugPrint(markerPosition.toString());
+                      onButtonPressed();
                     },
                     child: Text("KAYIT OL",
                         style: TextStyle(
@@ -208,13 +197,7 @@ class ButtonGroup extends StatelessWidget {
                   alignment: Alignment.center,
                   width: yellowMarkerWidth,
                   child: GestureDetector(
-                    onTap: () {
-                      markerPosition = !markerPosition;
-                      onButtonPressed;
-                      debugPrint("Button Pressed");
-
-                      debugPrint(markerPosition.toString());
-                    },
+                    onTap: onButtonPressed,
                     child: Text("GİRİŞ",
                         style: TextStyle(
                             color: markerPosition ? kthemeBlack : kthemeYellow,
