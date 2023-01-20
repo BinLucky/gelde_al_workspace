@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:ui';
 
+import 'package:google_fonts/google_fonts.dart';
+
 final String logoPath = "assets/logo.svg";
 
 final Widget mainLogo = SvgPicture.asset(
@@ -11,8 +13,8 @@ final Widget mainLogo = SvgPicture.asset(
 
 //##### COLORS #####//
 const Color kmainScaffoldColor = Color(0xFF2F2F2F);
-const Color kthemeWhite = Color(0xFFE5E5E5);
-const Color kinputWhite = Color(0xFFE0E0E0);
+const Color kthemeGrey = Color(0xFFE5E5E5);
+const Color kthemeWhite = Color(0xFFFFFFFF);
 const Color kthemeBlack = Color(0xFF2F2F2F);
 const Color kthemeYellow = Color(0xFFEBFF00);
 //####### DEVICE SCREEN SIZES #######//
@@ -29,6 +31,11 @@ double logoHeight = 300;
   final MediaQuery _mediaQuery;
   
 }*/
+
+TextStyle kTextStyleLoginFields = GoogleFonts.lato(
+  color: kthemeWhite,
+  fontSize: 18,
+);
 
 const double cIconSize = 35;
 
