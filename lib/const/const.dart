@@ -42,11 +42,13 @@ const double cIconSize = 35;
 double getdeviceWidth() {
   double devPixelRatio = window.devicePixelRatio;
   Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
+  debugPrint("Device Width = " + devLogicalScreenSize.width.toString());
   return devLogicalScreenSize.width;
 }
 
 double getdeviceHeigt() {
   double devPixelRatio = window.devicePixelRatio;
   Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
+  debugPrint("Device Width = " + devLogicalScreenSize.height.toString());
   return devLogicalScreenSize.height;
 }

@@ -5,14 +5,17 @@ import 'package:gelde_al_workspace/const/const.dart';
 import 'const.dart';
 
 class LoginWSocial extends StatelessWidget {
+  const LoginWSocial({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: kthemeWhite, borderRadius: BorderRadius.circular(15)),
+            color: kthemeWhite, borderRadius: BorderRadius.circular(40)),
         width: ksSocialContainerWidth,
+        height: 80,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             FlutterSocialButton(
               onTap: () {},
@@ -33,4 +36,3 @@ class LoginWSocial extends StatelessWidget {
         ));
   }
 }
-/**/

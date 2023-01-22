@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 import '../../const/const.dart';
 
 String kStringMailHint = "E-posta adresinizi girin";
-String kStringFgPassword = "Şifremi Unuttum";
+String kStringForgetPass = "Şifremi Unuttum ?";
+
+TextStyle kStyleForgotPassword = GoogleFonts.inter(fontWeight: FontWeight.bold);
 
 InputDecoration kdEmailField = InputDecoration(
     suffixIcon: const Icon(
