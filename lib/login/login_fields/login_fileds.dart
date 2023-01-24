@@ -11,12 +11,19 @@ class LoginWCredientals extends StatelessWidget {
       height: klgphElementHeight,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        TextFormField(
-            enableInteractiveSelection: true, decoration: kdEmailField),
+        SizedBox(
+          height: 45,
+          child: TextFormField(
+              enableInteractiveSelection: true, decoration: kdEmailField),
+        ),
         //const SizedBox(height: 10),
-        TextFormField(
-            //onEditingComplete: () => _controller.reverse(),
-            decoration: kdPasswordField),
+        SizedBox(
+          height: 45,
+          child: TextFormField(
+
+              //onEditingComplete: () => _controller.reverse(),
+              decoration: kdPasswordField),
+        ),
         const Forgottens()
       ]),
     );
