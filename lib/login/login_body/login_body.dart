@@ -26,8 +26,9 @@ class LoginButtonPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: klgphWidth,
-      height: klgphHeight,
+      constraints: BoxConstraints(maxHeight: klgphHeight, maxWidth: klgphWidth),
+      //width: klgphWidth,
+      //height: klgphHeight,
       padding: klgphPadding,
       decoration: klgphDecoration,
       child: Column(

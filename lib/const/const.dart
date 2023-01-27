@@ -49,6 +49,6 @@ double getdeviceWidth() {
 double getdeviceHeigt() {
   double devPixelRatio = window.devicePixelRatio;
   Size devLogicalScreenSize = window.physicalSize / devPixelRatio;
-  debugPrint("Device Width = " + devLogicalScreenSize.height.toString());
+  debugPrint("Device Heigt = " + devLogicalScreenSize.height.toString());
   return devLogicalScreenSize.height;
 }
