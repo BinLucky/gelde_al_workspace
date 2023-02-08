@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:gelde_al_workspace/reponsive_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../const/const.dart';
 
 String kStringMailHint = "E-posta adresinizi girin";
 String kStringForgetPass = "Şifremi Unuttum ?";
 
+TextStyle kTextStyleLoginFields = GoogleFonts.lato(
+  color: kthemeWhite,
+  fontSize: 18,
+);
 TextStyle kStyleForgotPassword = GoogleFonts.inter(fontWeight: FontWeight.bold);
+double lfTextFieldSize = 47;
 
 InputDecoration kdEmailField = InputDecoration(
     suffixIcon: const Icon(

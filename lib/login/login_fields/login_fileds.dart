@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../const/const.dart';
 import '../login_body/const.dart';
 import 'const.dart';
 
@@ -8,21 +9,23 @@ class LoginWCredientals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: klgphElementHeight,
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      //height: klgphElementHeight,
+      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
         SizedBox(
-          height: 50,
+          height: lfTextFieldSize,
           child: TextFormField(
               enableInteractiveSelection: true, decoration: kdEmailField),
         ),
-        //const SizedBox(height: 10),
+        SizedBox(height: spaceSize),
         SizedBox(
-          height: 50,
+          height: lfTextFieldSize,
           child: TextFormField(
 
               //onEditingComplete: () => _controller.reverse(),
               decoration: kdPasswordField),
+        ),
+        SizedBox(
+          height: spaceSize,
         ),
         const Forgottens()
       ]),

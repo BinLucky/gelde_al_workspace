@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_social_button/flutter_social_button.dart';
 import 'package:gelde_al_workspace/const/const.dart';
+import 'package:gelde_al_workspace/reponsive_ui.dart';
 
 import 'const.dart';
 
@@ -13,7 +14,7 @@ class LoginWSocial extends StatelessWidget {
         decoration: BoxDecoration(
             color: kthemeWhite, borderRadius: BorderRadius.circular(40)),
         width: ksSocialContainerWidth,
-        height: 80,
+        height: ResponsiveScaler.blockSizeVertical * 9,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

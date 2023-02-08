@@ -4,6 +4,8 @@ import 'dart:ui';
 
 import 'package:google_fonts/google_fonts.dart';
 
+import '../reponsive_ui.dart';
+
 final String logoPath = "assets/logo.svg";
 
 final Widget mainLogo = SvgPicture.asset(
@@ -22,6 +24,8 @@ double deviceHeight = getdeviceHeigt();
 double deviceWidth = getdeviceWidth();
 double barWidth = deviceWidth;
 double yellowMarkerWidth = barWidth * 0.4;
+
+double spaceSize = ResponsiveScaler.safeBlockVertical * 0.7;
 //####### DEVICE SCREEN SIZES #######//
 
 double logoHeight = 300;
@@ -31,11 +35,6 @@ double logoHeight = 300;
   final MediaQuery _mediaQuery;
   
 }*/
-
-TextStyle kTextStyleLoginFields = GoogleFonts.lato(
-  color: kthemeWhite,
-  fontSize: 18,
-);
 
 const double cIconSize = 35;
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gelde_al_workspace/login/login_body/login_body.dart';
+import 'package:gelde_al_workspace/reponsive_ui.dart';
 import 'const/const.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -42,18 +43,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      builder: (context, widget) => ResponsiveWrapper.builder(
-        ClampingScrollWrapper.builder(context, widget!),
-        breakpoints: const [
-          ResponsiveBreakpoint.resize(350, name: MOBILE),
-          ResponsiveBreakpoint.autoScale(600, name: TABLET),
-          ResponsiveBreakpoint.resize(800, name: DESKTOP),
-          ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
-        ],
-      ),
-      title: 'Flutter Demo',
       home: Scaffold(
         body: LoginBody(),
         backgroundColor: kmainScaffoldColor,
