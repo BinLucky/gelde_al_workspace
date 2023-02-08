@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../const/const.dart';
+import 'const.dart';
 
 class YellowButtonMarker extends StatelessWidget {
   const YellowButtonMarker({
@@ -18,7 +19,7 @@ class YellowButtonMarker extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: barWidth * 0.003),
       child: Container(
         width: yellowMarkerWidth,
-        height: 51,
+        height: ksButtonHeight,
         decoration: BoxDecoration(
             color: kthemeYellow, borderRadius: BorderRadius.circular(15)),
       ),

@@ -33,7 +33,7 @@ dependencies:
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
   google_fonts: ^3.0.1
-  flutter_social_button: ^1.1.4
+  sign_button: ^2.0.2
   responsive_framework: ^0.2.0
 
 

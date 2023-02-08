@@ -11,7 +11,7 @@ TextStyle kTextStyleLoginFields = GoogleFonts.lato(
   fontSize: 18,
 );
 TextStyle kStyleForgotPassword = GoogleFonts.inter(fontWeight: FontWeight.bold);
-double lfTextFieldSize = 47;
+double lfTextFieldSize = ResponsiveScaler.safeBlockVertical * 7.3;
 
 InputDecoration kdEmailField = InputDecoration(
     suffixIcon: const Icon(

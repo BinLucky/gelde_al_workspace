@@ -11,7 +11,7 @@ class SingInUpButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: klgphElementHeight / 2,
+      height: ksButtonHeight,
       child: Stack(children: [
         Container(
           height: ksButtonHeight,

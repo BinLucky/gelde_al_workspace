@@ -22,5 +22,3 @@ BoxDecoration klgphDecoration = const BoxDecoration(
       topLeft: Radius.circular(50), topRight: Radius.circular(50)),
   color: kthemeGrey,
 );
-
-//ThemeData tmData = ThemeData(accentColor: Colors.blue);

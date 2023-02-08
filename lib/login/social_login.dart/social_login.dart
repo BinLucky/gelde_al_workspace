@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_social_button/flutter_social_button.dart';
 import 'package:gelde_al_workspace/const/const.dart';
 import 'package:gelde_al_workspace/reponsive_ui.dart';
+import 'package:sign_button/sign_button.dart';
 
 import 'const.dart';
 
@@ -14,24 +14,23 @@ class LoginWSocial extends StatelessWidget {
         decoration: BoxDecoration(
             color: kthemeWhite, borderRadius: BorderRadius.circular(40)),
         width: ksSocialContainerWidth,
-        height: ResponsiveScaler.blockSizeVertical * 9,
+        height: ResponsiveScaler.blockSizeVertical * 8,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlutterSocialButton(
-              onTap: () {},
+            SignInButton.mini(
               buttonType: ButtonType.facebook,
-              mini: true,
+              onPressed: () {},
             ),
-            FlutterSocialButton(
-              onTap: () {},
+            SignInButton.mini(
+              padding: ResponsiveScaler.safeBlockHorizontal,
               buttonType: ButtonType.google,
-              mini: true,
+              onPressed: () {},
             ),
-            FlutterSocialButton(
-              onTap: () {},
+            SignInButton.mini(
+              padding: ResponsiveScaler.safeBlockHorizontal,
               buttonType: ButtonType.apple,
-              mini: true,
+              onPressed: () {},
             ),
           ],
         ));

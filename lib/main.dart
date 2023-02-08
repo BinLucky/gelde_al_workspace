@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    getdeviceHeigt();
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

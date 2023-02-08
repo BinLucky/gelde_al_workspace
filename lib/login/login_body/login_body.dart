@@ -30,8 +30,6 @@ class LoginButtonPlaceholder extends StatelessWidget {
     ResponsiveScaler.init(context);
     return Container(
       constraints: BoxConstraints(maxHeight: klgphHeight, maxWidth: klgphWidth),
-      //width: klgphWidth,
-      //height: klgphHeight,
       padding: klgphPadding,
       decoration: klgphDecoration,
       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
